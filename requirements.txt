@@ -1,0 +1,3 @@
+# No external dependencies required
+# Optional: psutil for actual memory monitoring
+# psutil>=5.0.0
