@@ -56,7 +56,9 @@ class ProcessHookManager:
             if memory_percent > 90:
                 self.hook.state = ProcessState.CRITICAL
                 self.hook.max_processes = 10
-            elif memory_percent > 75:
+            elif memory_percent >= 75:
+                # 修正(2026-10-29): 境界値 75% のときも上限 50 の側に入るよう >= に変更
+                # （従来は > 75 のため 75% ちょうどで上限 75 の帯域に入っていた）
                 self.hook.state = ProcessState.DEGRADED
                 self.hook.max_processes = 50
             elif memory_percent > 50:
